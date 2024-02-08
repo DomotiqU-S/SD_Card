@@ -1,2 +1,2 @@
-idf_component_register(SRCS "sd_card.c" "main.cpp" "sd_card.cpp"
+idf_component_register(SRCS "main.cpp" "sd_card.cpp"
                     INCLUDE_DIRS ".")

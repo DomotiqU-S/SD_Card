@@ -4,13 +4,10 @@
 Sd_Card::Sd_Card()
 {
     esp_vfs_fat_sdmmc_mount_config_t mount_config = {
-    #ifdef CONFIG_EXAMPLE_FORMAT_IF_MOUNT_FAILED
-            .format_if_mount_failed = true,
-    #else
-            .format_if_mount_failed = false,
-    #endif // EXAMPLE_FORMAT_IF_MOUNT_FAILED
-            .max_files = 5,
-            .allocation_unit_size = 16 * 1024};
+        .format_if_mount_failed = true,
+        .max_files = 5,
+        .allocation_unit_size = 16 * 1024
+    };
     const char mount_point[] = MOUNT_POINT;
     ESP_LOGI(TAG, "Initializing SD card");
     ESP_LOGI(TAG, "Using SPI peripheral");
@@ -19,7 +16,6 @@ Sd_Card::Sd_Card()
     // For setting a specific frequency, use host.max_freq_khz (range 400kHz - 20MHz for SDSPI)
     // Example: for fixed frequency of 10MHz, use host.max_freq_khz = 10000;
     sdmmc_host_t host = SDSPI_HOST_DEFAULT();
-    host.max_freq_khz = 400;
     this->host = host;
     spi_bus_config_t bus_cfg = {
         .mosi_io_num = PIN_NUM_MOSI,
