@@ -48,13 +48,13 @@ static esp_err_t SdCard_Init(struct SdCard* this)
     // If format_if_mount_failed is set to true, SD card will be partitioned and
     // formatted in case when mounting fails.
     esp_vfs_fat_sdmmc_mount_config_t mount_config = {
-#ifdef CONFIG_EXAMPLE_FORMAT_IF_MOUNT_FAILED
-        .format_if_mount_failed = true,
-#else
-        .format_if_mount_failed = false,
-#endif // EXAMPLE_FORMAT_IF_MOUNT_FAILED
-        .max_files = 5,
-        .allocation_unit_size = 16 * 1024};
+    #ifdef CONFIG_EXAMPLE_FORMAT_IF_MOUNT_FAILED
+            .format_if_mount_failed = true,
+    #else
+            .format_if_mount_failed = false,
+    #endif // EXAMPLE_FORMAT_IF_MOUNT_FAILED
+            .max_files = 5,
+            .allocation_unit_size = 16 * 1024};
     const char mount_point[] = MOUNT_POINT;
     ESP_LOGI(TAG, "Initializing SD card");
 
