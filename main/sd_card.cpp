@@ -55,6 +55,7 @@ Sd_Card::Sd_Card()
 }
 Sd_Card::~Sd_Card()
 {
+    esp_vfs_fat_sdcard_unmount(MOUNT_POINT, card);
     spi_bus_free((spi_host_device_t)this->host.slot);
 }
 

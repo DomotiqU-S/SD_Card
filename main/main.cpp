@@ -25,5 +25,6 @@ extern "C" void app_main()
     }
     ESP_LOGI(TAG, "File Read");
     delete sd_card;
+    ESP_LOGI(TAG, "DEINITIALIZED SD CARD AND SPI");
     return;
 }
