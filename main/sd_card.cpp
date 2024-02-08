@@ -1,6 +1,12 @@
 
 #include "sd_card.hpp"
-
+/**
+ * @brief Constructor for the Sd_Card class.
+ * 
+ * this constructor initializes the SD card and mounts the filesystem.
+ * 
+ * @return N/A
+*/
 Sd_Card::Sd_Card()
 {
     esp_vfs_fat_sdmmc_mount_config_t mount_config = {
@@ -11,10 +17,6 @@ Sd_Card::Sd_Card()
     const char mount_point[] = MOUNT_POINT;
     ESP_LOGI(TAG, "Initializing SD card");
     ESP_LOGI(TAG, "Using SPI peripheral");
-
-    // By default, SD card frequency is initialized to SDMMC_FREQ_DEFAULT (20MHz)
-    // For setting a specific frequency, use host.max_freq_khz (range 400kHz - 20MHz for SDSPI)
-    // Example: for fixed frequency of 10MHz, use host.max_freq_khz = 10000;
     sdmmc_host_t host = SDSPI_HOST_DEFAULT();
     this->host = host;
     spi_bus_config_t bus_cfg = {
@@ -53,12 +55,28 @@ Sd_Card::Sd_Card()
     sdmmc_card_print_info(stdout, this->card);
     return;
 }
+/**
+ * @brief Destructor for the Sd_Card class.
+ * 
+ * this destructor unmounts the filesystem and frees the SPI bus.
+ * 
+ * @return N/A
+*/
 Sd_Card::~Sd_Card()
 {
     esp_vfs_fat_sdcard_unmount(MOUNT_POINT, card);
     spi_bus_free((spi_host_device_t)this->host.slot);
 }
-
+/**
+ * @brief Writes data to a file.
+ * 
+ * This function writes data to a file.
+ * 
+ * @param path the path to the file.
+ * @param data the data to write to the file.
+ * 
+ * @return N/A
+*/
 void Sd_Card::WriteFile(const char *path, char *data)
 {
     ESP_LOGI(TAG, "Opening file %s", path);
@@ -73,7 +91,15 @@ void Sd_Card::WriteFile(const char *path, char *data)
     ESP_LOGI(TAG, "File written");
     this->ret = ESP_OK;
 }
-
+/**
+ * @brief Reads data from a file.
+ * 
+ * This function reads data from a file.
+ * 
+ * @param path the path to the file.
+ * 
+ * @return N/A
+*/
 void Sd_Card::ReadFile(const char *path)
 {
     ESP_LOGI(TAG, "Reading file %s", path);
@@ -96,6 +122,13 @@ void Sd_Card::ReadFile(const char *path)
     ESP_LOGI(TAG, "Read from file: '%s'", line);
     this->ret = ESP_OK;
 }
+/**
+ * @brief Gets the return value of the last operation.
+ * 
+ * This function returns the return value of the last operation.
+ * 
+ * @return the return value of the last operation.
+*/
 esp_err_t Sd_Card::GetRet()
 {
     return this->ret;

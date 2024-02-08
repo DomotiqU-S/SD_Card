@@ -7,14 +7,14 @@
 #include "esp_vfs_fat.h"
 #include "sdmmc_cmd.h"
 
-#define EXAMPLE_MAX_CHAR_SIZE 64
-#define PIN_NUM_MISO (gpio_num_t)37
-#define PIN_NUM_MOSI (gpio_num_t)35
-#define PIN_NUM_CLK  (gpio_num_t)36
-#define PIN_NUM_CS   (gpio_num_t)34
-#define MOUNT_POINT "/sdcard"
+#define EXAMPLE_MAX_CHAR_SIZE 64    // Maximum size of the data to write to the file.
+#define PIN_NUM_MISO (gpio_num_t)37 // The pin number for the MISO line.
+#define PIN_NUM_MOSI (gpio_num_t)35 // The pin number for the MOSI line.
+#define PIN_NUM_CLK  (gpio_num_t)36 // The pin number for the clock line.
+#define PIN_NUM_CS   (gpio_num_t)34 // The pin number for the chip select line.
+#define MOUNT_POINT "/sdcard"       // The mount point for the SD card.
 
-static const char *TAG = "SD";
+static const char *TAG = "SD";      // The tag for the ESP_LOGI macro.
 
 class Sd_Card{
 private:

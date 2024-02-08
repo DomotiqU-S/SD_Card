@@ -1,5 +1,4 @@
 | Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C6 | ESP32-S2 | ESP32-S3 |
-| ----------------- | ----- | -------- | -------- | -------- | -------- | -------- |
 
 # SD Card example (SDSPI)
 
@@ -17,7 +16,7 @@ This example demonstrates how to use an SD card with an ESP device over an SPI i
 4. Rename the file. Before renaming, check if destination file already exists using `stat` function, and remove it using `unlink` function.
 5. Open renamed file for reading, read back the line, and print it to the terminal.
 
-This example support SD (SDSC, SDHC, SDXC) cards.
+This example support SD (SDSC, SDHC, SDXC) cards. 
 
 ## Hardware
 
