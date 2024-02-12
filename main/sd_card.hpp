@@ -16,14 +16,14 @@
 
 static const char *TAG = "SD";      // The tag for the ESP_LOGI macro.
 
-class Sd_Card{
+class SdCard{
 private:
    sdmmc_host_t host;
    sdmmc_card_t *card;
    esp_err_t ret;
 public:
-   Sd_Card();
-   ~Sd_Card();
+   SdCard();
+   ~SdCard();
    void WriteFile(const char *path, char *data);
    void ReadFile(const char *path);
    esp_err_t GetRet();

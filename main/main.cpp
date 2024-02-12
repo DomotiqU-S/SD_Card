@@ -3,7 +3,7 @@
 
 extern "C" void app_main()
 {
-    Sd_Card *sd_card = new Sd_Card();
+    SdCard *sd_card = new SdCard();
     if(sd_card->GetRet() != ESP_OK)
     {
         return;
